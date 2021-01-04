@@ -9,24 +9,24 @@
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Question" v-model="quizForm.question">
+                            <input type="text" class="form-control" placeholder="Question" maxlength="120" v-model="quizForm.question">
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary" @click="addOption">+ Add options</button>
+                        <button type="button" class="btn btn-primary" @click="addOption" :disabled="maxOptions">+ Add options</button>
                     </div>
                 </div>
                 
                 <div class="form-group" v-for="option in quizForm.options" :key="option.id">
                     <div class="row">
                         <div class="col">
-                            <input class="form-control" id="option" placeholder="Option" v-model="option.text">
+                            <input class="form-control" id="option" placeholder="Option" maxlength="60" v-model="option.text">
                         </div>
                         <button type="button" class="btn btn-primary" @click="addCorrectOption(option.id)"><i class="fas fa-check"></i></button>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" @submit="createQuiz">Create</button>
+                <button type="submit" class="btn btn-primary" @submit="createQuiz" :disabled="!isValid">Create</button>
             </form>
         </div>
     </div>
@@ -55,6 +55,20 @@
             },
             createQuiz() {
                 this.createQuiz(this.quizForm)
+            }
+        },
+        computed: {
+            validQuestion() {
+                return this.quizForm.question.length > 0 ? true : false
+            },
+            validOptions() {
+                return this.quizForm.options.length > 0 ? true : false
+            },
+            maxOptions() {
+                return this.quizForm.options.length === 10 ? true : false
+            },
+            isValid() {
+                return this.validQuestion && this.validOptions
             }
         }
     }
