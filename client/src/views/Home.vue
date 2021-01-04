@@ -5,6 +5,7 @@
         </div>
         <div class="container container-form">
             <form>
+
                 <div class="row">
                     <div class="col">
                         <div class="form-group">
@@ -15,10 +16,16 @@
                         <button type="button" class="btn btn-primary" @click="addOption">+ Add options</button>
                     </div>
                 </div>
-                <div class="form-group col s12" v-for="option in quizForm.options" :key="option.id">
-                    <label for="option">Option {{option.id+1}}</label>
-                    <input class="form-control" id="option" placeholder="Option" v-model="option.text">
+                
+                <div class="form-group" v-for="option in quizForm.options" :key="option.id">
+                    <div class="row">
+                        <div class="col">
+                            <input class="form-control" id="option" placeholder="Option" v-model="option.text">
+                        </div>
+                        <button type="button" class="btn btn-primary" @click="addCorrectOption(option.id)"><i class="fas fa-check"></i></button>
+                    </div>
                 </div>
+
                 <button type="submit" class="btn btn-primary" @submit="createQuiz">Create</button>
             </form>
         </div>
@@ -40,7 +47,11 @@
         methods: {
             ...mapActions(['createQuiz']),
             addOption() {
-                this.quizForm.options.push({id: this.quizForm.options.length, text: ""})
+                this.quizForm.options.push({id: this.quizForm.options.length, text: "", isTrue: false})
+            },
+            addCorrectOption(id) {
+                this.quizForm.options[id].isTrue = true
+                console.log(this.quizForm.options)
             },
             createQuiz() {
                 this.createQuiz(this.quizForm)
@@ -59,5 +70,9 @@
 
 .container-header {
     margin: 1rem auto;
+}
+
+.label {
+    padding-left: 0;
 }
 </style>
