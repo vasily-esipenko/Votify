@@ -9,7 +9,8 @@
                 <div class="row question">
                     <div class="col">
                         <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Question" maxlength="120" v-model="quizForm.question">
+                            <input type="text" class="form-control" autocomplete="off"
+                            placeholder="Question" maxlength="120" v-model="quizForm.question">
                         </div>
                     </div>
                     <div class="form-group">
@@ -20,7 +21,8 @@
                 <div class="form-group options" v-for="option in quizForm.options" :key="option.id">
                     <div class="row">
                         <div class="col">
-                            <input class="form-control" id="option" placeholder="Option" maxlength="60" v-model="option.text">
+                            <input class="form-control" id="option" autocomplete="off"
+                            placeholder="Option" maxlength="60" v-model="option.text">
                         </div>
                         <button type="button" class="btn btn-primary" @click="addCorrectOption(option.id)"><i class="fas fa-check"></i></button>
                     </div>
