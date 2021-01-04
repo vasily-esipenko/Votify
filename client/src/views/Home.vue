@@ -49,7 +49,7 @@
         methods: {
             ...mapActions(['createQuiz']),
             addOption() {
-                this.quizForm.options.push({id: this.quizForm.options.length, text: "", isTrue: false})
+                this.quizForm.options.push({id: this.quizForm.options.length, text: "", isTrue: false, votes: 0})
             },
             addCorrectOption(id) {
                 this.quizForm.options[id].isTrue = true
