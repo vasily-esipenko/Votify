@@ -13,6 +13,8 @@ export default {
 <style scoped>
 .navbar {
     font-size: 2rem;
+    flex-shrink: 0;
+
 }
 a {
     text-decoration: none;

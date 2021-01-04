@@ -18,9 +18,12 @@ export default {
     padding: 0;
 }
 .footer {
-    position: absolute;
-    width: 100%;
+    position: relative;
     bottom: 0;
+    margin-bottom: -100vh;
+    flex-shrink: 0;
+    height: auto;
+    width: 100%;
     padding: 1rem;
     background-color: #f8f9fa!important;
 }

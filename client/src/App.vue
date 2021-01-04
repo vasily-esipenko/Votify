@@ -1,7 +1,9 @@
 <template>
-  <div>
+  <div class="wrapper">
     <Navbar />
-    <router-view/>
+    <main>
+        <router-view/>
+    </main>
     <Footer />
   </div>
 </template>
@@ -23,6 +25,16 @@ export default {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
+}
+
+main {
+    flex-grow: 1;
+}
+
+.wrapper {
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 
 </style>
