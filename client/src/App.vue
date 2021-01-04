@@ -29,6 +29,7 @@ export default {
 
 main {
     flex-grow: 1;
+    overflow-x: hidden;
 }
 
 .wrapper {
