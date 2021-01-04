@@ -6,18 +6,18 @@
         <div class="container container-form">
             <form>
 
-                <div class="row">
+                <div class="row question">
                     <div class="col">
                         <div class="form-group">
                             <input type="text" class="form-control" placeholder="Question" maxlength="120" v-model="quizForm.question">
                         </div>
                     </div>
                     <div class="form-group">
-                        <button type="button" class="btn btn-primary" @click="addOption" :disabled="maxOptions">+ Add options</button>
+                        <button type="button" class="btn btn-primary" @click="addOption" :disabled="maxOptions">+ Add option</button>
                     </div>
                 </div>
                 
-                <div class="form-group" v-for="option in quizForm.options" :key="option.id">
+                <div class="form-group options" v-for="option in quizForm.options" :key="option.id">
                     <div class="row">
                         <div class="col">
                             <input class="form-control" id="option" placeholder="Option" maxlength="60" v-model="option.text">
@@ -84,6 +84,14 @@
 
 .container-header {
     margin: 1rem auto;
+}
+
+.question {
+    margin: 0 auto 3rem;
+}
+
+.options {
+    margin: 0 auto 3rem;
 }
 
 .label {
