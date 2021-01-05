@@ -28,7 +28,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary" @submit="createQuiz" :disabled="!isValid">Create</button>
+                <button type="submit" class="btn btn-primary" :disabled="!isValid" @submit="createQuiz">Create</button>
             </form>
         </div>
     </div>
@@ -37,7 +37,7 @@
 <script>
     import {mapActions} from 'vuex'
     export default {
-        name: "Home",
+        name: "Quiz",
         data() {
             return {
                 quizForm: {
@@ -55,7 +55,6 @@
                 this.quizForm.options[id].isTrue = true
                 this.$refs['optionBtn' + `${id}`].style.backgroundColor = "#28a745"
                 this.$refs['optionBtn' + `${id}`].style.borderColor = "#28a745"
-                console.log(this.$refs['optionBtn' + `${id}`])
             },
             createQuiz() {
                 this.createQuiz(this.quizForm)
@@ -82,9 +81,6 @@
             isValid() {
                 return this.validQuestion && this.validOptions
             }
-        },
-        async mounted() {
-            console.log(this.$refs)
         }
     }
 </script>

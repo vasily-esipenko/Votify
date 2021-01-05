@@ -12,7 +12,7 @@ export default createStore({
   },
   actions: {
       async createQuiz(ctx, quiz) {
-          const res = await fetch(`${SERVERLINK}/create`, {
+          const res = await fetch(`${SERVERLINK}/quiz/create`, {
               method: 'POST',
               body: JSON.stringify(quiz),
               headers: {
