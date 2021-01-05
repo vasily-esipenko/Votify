@@ -24,7 +24,7 @@
                             <input class="form-control" id="option" autocomplete="off"
                             placeholder="Option" maxlength="60" v-model="option.text">
                         </div>
-                        <button type="button" class="btn btn-primary" id="{{ option.id }}" :disabled="trueOption" ref="correctOpt" @click="addCorrectOption(option.id)"><i class="fas fa-check"></i></button>
+                        <button type="button" class="btn btn-primary" :disabled="trueOption" :ref="`optionBtn${option.id}`" @click="addCorrectOption(option.id)"><i class="fas fa-check"></i></button>
                     </div>
                 </div>
 
@@ -53,7 +53,9 @@
             },
             addCorrectOption(id) {
                 this.quizForm.options[id].isTrue = true
-                
+                this.$refs['optionBtn' + `${id}`].style.backgroundColor = "#28a745"
+                this.$refs['optionBtn' + `${id}`].style.borderColor = "#28a745"
+                console.log(this.$refs['optionBtn' + `${id}`])
             },
             createQuiz() {
                 this.createQuiz(this.quizForm)
@@ -80,6 +82,9 @@
             isValid() {
                 return this.validQuestion && this.validOptions
             }
+        },
+        async mounted() {
+            console.log(this.$refs)
         }
     }
 </script>
@@ -102,6 +107,10 @@
 
 .options {
     margin: 0 auto 3rem;
+}
+
+.correctBtn {
+    display: none;
 }
 
 .label {
