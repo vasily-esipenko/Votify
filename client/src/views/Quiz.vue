@@ -25,6 +25,7 @@
                             placeholder="Option" maxlength="60" v-model="option.text">
                         </div>
                         <button type="button" class="btn btn-primary" :disabled="trueOption" :ref="`optionBtn${option.id}`" @click="addCorrectOption(option.id)"><i class="fas fa-check"></i></button>
+                        <button type="button" class="btn btn-danger" @click="removeOption(option.id)"><i class="fas fa-times"></i></button>
                     </div>
                 </div>
 
@@ -56,6 +57,13 @@
                 this.$refs['optionBtn' + `${id}`].style.backgroundColor = "#28a745"
                 this.$refs['optionBtn' + `${id}`].style.borderColor = "#28a745"
             },
+            removeOption(id) {
+                //this.quizForm.options.splice(id, 1)
+                if (this.quizForm.options.length === 1) {
+                    this.quizForm.options = []
+                }
+                this.quizForm.options = this.quizForm.options.filter((el) => el !== this.quizForm.options[id])
+            },
             createQuiz() {
                 this.createQuiz(this.quizForm)
             }
@@ -64,8 +72,20 @@
             validQuestion() {
                 return this.quizForm.question.length > 0 ? true : false
             },
-            validOptions() {
-                return this.quizForm.options.length > 0 ? true : false
+            validOptionTexts() {
+                for (let i = 0; i < this.quizForm.options.length; i++) {
+                    return this.quizForm.options[i].text.length > 0 ? true : false
+                }
+                return false
+            },
+            validTrueOption() {
+                for (let i = 0; i < this.quizForm.options.length; i++) {
+                    return this.quizForm.options[i].isTrue ? true : false
+                }
+                return false
+            },
+            validOptionLength() {
+                return this.quizForm.options.length > 1 ? true : false
             },
             maxOptions() {
                 return this.quizForm.options.length === 10 ? true : false
@@ -79,7 +99,7 @@
                 return false
             },
             isValid() {
-                return this.validQuestion && this.validOptions
+                return this.validQuestion && this.validOptionTexts && this.validTrueOption && this.validOptionLength
             }
         }
     }
